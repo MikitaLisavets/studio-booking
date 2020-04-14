@@ -11,13 +11,23 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-node@v1
       with:
-        node-version: '10.x'
-    - name: npm install
-      run: npm install
-    - name: serverless deploy
-      uses: serverless/github-action@master
+        node-version: '12.x'
+    - name: Yarn Install
+      run: |
+          yarn install
+    - name: Unit Tests
+      run: |
+        yarn test
+    - name: Production Build
+      run: |
+        yarn build
+    - name: Deploy to S3
+      uses: jakejarvis/s3-sync-action@master
       with:
-        args: deploy
+        args: --acl public-read --delete
       env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_PRODUCTION_BUCKET_NAME }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        SOURCE_DIR: "build"
