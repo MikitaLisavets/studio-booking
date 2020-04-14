@@ -1,6 +1,9 @@
 component: website
 name: studio-booking
 
+service:
+  name: studio-booking
+
 package:
   exclude:
     - node_modules/**
