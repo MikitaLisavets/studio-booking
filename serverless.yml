@@ -1,9 +1,11 @@
 component: website
 name: studio-booking
-stage: ${opt:stage, 'dev'}
 
-service:
-  name: studio-booking
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
 
 inputs:
   src: ./build
