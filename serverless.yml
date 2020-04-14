@@ -2,6 +2,9 @@ component: website
 name: studio-booking
 stage: ${opt:stage, 'dev'}
 
+service:
+  name: studio-booking
+
 inputs:
   src: ./build
   hook: npm run build
