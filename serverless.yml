@@ -1,6 +1,10 @@
 component: website
-name: studio-booking
-stage: ${opt:stage, 'dev'}
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: eu-north-1
 
 service:
   name: studio-booking
