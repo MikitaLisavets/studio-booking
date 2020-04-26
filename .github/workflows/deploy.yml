@@ -13,14 +13,14 @@ jobs:
       with:
         node-version: '12.x'
     - name: Yarn Install
-      env:
-        REACT_APP_API: ${{secrets.REACT_APP_API}} 
       run: |
           yarn install
     - name: Unit Tests
       run: |
         yarn test
     - name: Production Build
+      env:
+        REACT_APP_API: ${{secrets.REACT_APP_API}} 
       run: |
         yarn build
     - name: Deploy to S3
