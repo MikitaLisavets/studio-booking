@@ -34,6 +34,7 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-jest": "^23.8.2"
+    "eslint-plugin-jest": "^23.8.2",
+    "serverless-s3-sync": "^1.12.0"
   }
 }
