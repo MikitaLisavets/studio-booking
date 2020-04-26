@@ -1,24 +1,87 @@
-import React from 'react';
-import logo from './logo.svg';
+import * as rest from './utils/rest';
+import React, { useState, FormEvent } from 'react';
 import './App.css';
 
 function App(): JSX.Element {
+  const [allUsers, setAllUsers] = useState<Array<any>>([]);
+  const [error, setError] = useState('');
+  const [needConfirm, setNeedConfirm] = useState(false);
+
+  function handleSubmit(event: FormEvent): void {
+    event.preventDefault();
+    const target = event.target as HTMLFormElement;
+    const email = target.elements[0] as HTMLInputElement;
+    const password = target.elements[1] as HTMLInputElement;
+    const confirmationCode = target.elements[2] as HTMLInputElement;
+
+    if (needConfirm) {
+      rest.confirmSignUp({ email: email.value, confirmationCode: confirmationCode.value })
+        .then(response => {
+          if (response.error) return setError(response.error.message);
+          setNeedConfirm(false);
+        });
+    } else {
+      rest.signUp({ email: email.value, password: password.value })
+        .then(response => {
+          if (response.error) return setError(response.error.message);
+          setNeedConfirm(true);
+        }); 
+    }
+  }
+
+  function handleGetAllUsers(): void {
+    rest.allUsers().then(setAllUsers);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" onSubmit={handleSubmit}>
+      { error
+        ?
+        <div className="error">
+          {error}
+        </div>
+        : ''
+      }
+      {
+        
+      }
+      <form>
+        <label>Email: 
+          <input type="email" name="email"/>
+        </label>
+        <br/>
+        <label>Password: 
+          <input type="password" name="password"/>
+        </label>
+        <br/>
+        { needConfirm
+          ? 
+          <label>Confirm code: 
+            <input type="text" name="confirmationCode"/>
+            <span className="green">Check your email</span>
+          </label>
+          : ''
+        }
+        <br/>
+        <button type="submit">Submit</button>
+        <button type="button" onClick={handleGetAllUsers}>Get all users</button>
+      </form>
+
+      { allUsers.length ?
+        <div>
+          All users:
+          <ul>
+            { allUsers.map((user, index) => (
+              <li key={index}>
+                {user.Attributes.find(({ Name }: any) => Name === 'email').Value}{' '}
+                [{user.UserStatus}]
+              </li>
+            ))}
+          </ul>
+        </div>
+        : ''
+      }
+
     </div>
   );
 }
