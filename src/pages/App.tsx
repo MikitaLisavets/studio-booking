@@ -1,7 +1,7 @@
-import * as rest from './utils/rest';
+import * as rest from '../utils/rest';
 import React, { useState, FormEvent } from 'react';
 import './App.css';
-import { User } from './types';
+import { User } from '../types';
 
 function App(): JSX.Element {
   const [allUsers, setAllUsers] = useState<Array<User>>([]);
