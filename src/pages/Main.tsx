@@ -1,3 +1,4 @@
+import './Main.scss';
 import React from 'react';
 import useShallowEqualSelector from '../hooks/useShallowEqualSelector';
 import useAction from '../hooks/useAction';

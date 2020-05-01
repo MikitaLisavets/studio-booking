@@ -1,4 +1,4 @@
-import './index.css';
+import './index.scss';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';

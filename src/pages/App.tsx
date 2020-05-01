@@ -1,6 +1,6 @@
 import * as rest from '../utils/rest';
 import React, { useState, FormEvent } from 'react';
-import './App.css';
+import './App.scss';
 import { User } from '../types';
 
 function App(): JSX.Element {
