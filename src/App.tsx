@@ -1,9 +1,10 @@
 import * as rest from './utils/rest';
 import React, { useState, FormEvent } from 'react';
 import './App.css';
+import { User } from './types';
 
 function App(): JSX.Element {
-  const [allUsers, setAllUsers] = useState<Array<any>>([]);
+  const [allUsers, setAllUsers] = useState<Array<User>>([]);
   const [error, setError] = useState('');
   const [needConfirm, setNeedConfirm] = useState(false);
 
@@ -71,12 +72,14 @@ function App(): JSX.Element {
         <div>
           All users:
           <ul>
-            { allUsers.map((user, index) => (
-              <li key={index}>
-                {user.Attributes.find(({ Name }: any) => Name === 'email').Value}{' '}
-                [{user.UserStatus}]
-              </li>
-            ))}
+            { allUsers.map((user, index) => {
+              const email = user.Attributes.find(({ Name }) => Name === 'email')?.Value;
+              return (
+                <li key={index}>
+                  {email}{' '} [{user.UserStatus}]
+                </li>
+              );
+            })}
           </ul>
         </div>
         : ''
