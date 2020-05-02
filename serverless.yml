@@ -11,6 +11,11 @@ custom:
   s3Sync:
     - bucketName: ${self:custom.bucketName}
       localDir: build/
+      acl: public-read
+      defaultContentType: text/html
+      params:
+        - '**/*.html':
+            CacheControl: 'public, max-age=0, must-revalidate'
 
 provider:
   name: aws
