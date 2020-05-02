@@ -14,8 +14,8 @@ custom:
       acl: public-read
       defaultContentType: text/html
       params:
-        - '**/*.html':
-            CacheControl: 'public, max-age=0, must-revalidate'
+        - index.html:
+            CacheControl: 'no-cache'
 
 provider:
   name: aws
