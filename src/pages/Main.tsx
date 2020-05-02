@@ -11,7 +11,7 @@ export default function Main(): JSX.Element {
   const decrement = useAction(Actions.decrement());
 
   return (
-    <div>
+    <div className="container">
       <div> Main {counter}</div>
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
