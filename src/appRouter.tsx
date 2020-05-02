@@ -7,8 +7,8 @@ export default function AppRouter(): JSX.Element {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={Main} />
-        <Route path="/App" component={App} />
+        <Route path="/counter" component={Main} />
+        <Route path="/" component={App} />
       </Switch>
     </Router>
   );
