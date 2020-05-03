@@ -1,14 +1,18 @@
-import './index.scss';
-import { createStore } from 'redux';
+import './styles/index.scss';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import AppRouter from './appRouter';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import rootReducer, { initialState } from './reducers';
-import AppRouter from './appRouter';
+import thunkMiddleware from 'redux-thunk';
 
-
-const store = createStore(rootReducer, initialState);
+const middleware = applyMiddleware(thunkMiddleware);
+const isDev = process.env.REACT_APP_STAGE === 'dev';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const composeEnhancers = isDev ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : compose;
+const store = createStore(rootReducer, initialState, composeEnhancers(middleware));
 
 ReactDOM.render(
   <Provider store={store}>
