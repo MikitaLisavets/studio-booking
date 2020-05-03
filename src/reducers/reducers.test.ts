@@ -9,7 +9,7 @@ describe('Reducers', () => {
   });
 
   describe('locale', () => {
-    const action: Actions.SetLocaleAction = {
+    const action: Actions.LocaleAction = {
       type:    Actions.SET_LOCALE,
       payload: 'ru'
     };

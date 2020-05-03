@@ -1,4 +1,5 @@
 export type AppState = {
+  error: Error | null;
   locale: string;
   counter: number;
 }
@@ -17,12 +18,10 @@ export type User = {
   UserStatus?: UserStatus;
 }
 
-export type ErrorResponse = {
-  error: {
-    code: string;
-    message: string;
-    statusCode: number;
-  };
+export type Error = {
+  code: string;
+  message: string;
+  statusCode: number;
 }
 
 export type SignUpResponse = {
