@@ -40,6 +40,7 @@ export function counter(state = initialState.counter, action: Action): number {
 }
 
 export default combineReducers({
+  error,
   locale,
   counter
 });
