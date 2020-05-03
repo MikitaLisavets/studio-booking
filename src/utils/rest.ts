@@ -1,11 +1,17 @@
+import { ListUsersResponse, SignUpResponse, ErrorResponse } from '../types';
+
 const API = process.env.REACT_APP_API;
 
-export async function allUsers() {
+export async function allUsers(): Promise<ListUsersResponse | ErrorResponse> {
   const response = await fetch(API + '/listUsers', { method: 'POST' });
   return await response.json();
 }
 
-export async function signUp({ password, email }: any) {
+export type SignUpProp = {
+  password: string;
+  email: string;
+}
+export async function signUp({ password, email}: SignUpProp): Promise<SignUpResponse | ErrorResponse> {
   const response = await fetch(API + '/signUp', {
     method: 'POST',
     headers: {
@@ -20,7 +26,12 @@ export async function signUp({ password, email }: any) {
   return await response.json();
 }
 
-export async function confirmSignUp({ confirmationCode, email }: any) {
+export type ConfirmSignUpProp = {
+  confirmationCode: string;
+  email: string;
+}
+
+export async function confirmSignUp({ confirmationCode, email }: ConfirmSignUpProp): Promise<object | ErrorResponse> {
   const response = await fetch(API + '/confirmSignUp', {
     method: 'POST',
     headers: {
