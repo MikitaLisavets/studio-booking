@@ -18,9 +18,11 @@ export type User = {
 }
 
 export type ErrorResponse = {
-  code: string;
-  message: string;
-  statusCode: number;
+  error: {
+    code: string;
+    message: string;
+    statusCode: number;
+  };
 }
 
 export type SignUpResponse = {

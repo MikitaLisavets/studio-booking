@@ -1,17 +1,20 @@
-import { ListUsersResponse, SignUpResponse, ErrorResponse } from '../types';
+import { ListUsersResponse, SignUpResponse } from '../types';
 
 const API = process.env.REACT_APP_API;
 
-export async function allUsers(): Promise<ListUsersResponse | ErrorResponse> {
+export async function allUsers(): Promise<ListUsersResponse> {
   const response = await fetch(API + '/listUsers', { method: 'POST' });
-  return await response.json();
+  const result =  await response.json();
+
+  if (response.ok) return result;
+  throw result;
 }
 
 export type SignUpProp = {
   password: string;
   email: string;
 }
-export async function signUp({ password, email}: SignUpProp): Promise<SignUpResponse | ErrorResponse> {
+export async function signUp({ password, email}: SignUpProp): Promise<SignUpResponse> {
   const response = await fetch(API + '/signUp', {
     method: 'POST',
     headers: {
@@ -22,8 +25,10 @@ export async function signUp({ password, email}: SignUpProp): Promise<SignUpResp
       email
     })
   });
- 
-  return await response.json();
+  const result =  await response.json();
+
+  if (response.ok) return result;
+  throw result;
 }
 
 export type ConfirmSignUpProp = {
@@ -31,7 +36,7 @@ export type ConfirmSignUpProp = {
   email: string;
 }
 
-export async function confirmSignUp({ confirmationCode, email }: ConfirmSignUpProp): Promise<object | ErrorResponse> {
+export async function confirmSignUp({ confirmationCode, email }: ConfirmSignUpProp): Promise<object> {
   const response = await fetch(API + '/confirmSignUp', {
     method: 'POST',
     headers: {
@@ -43,5 +48,8 @@ export async function confirmSignUp({ confirmationCode, email }: ConfirmSignUpPr
     })
   });
  
-  return await response.json();
+  const result =  await response.json();
+
+  if (response.ok) return result;
+  throw result;
 }
