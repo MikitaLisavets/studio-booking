@@ -1,4 +1,5 @@
 export type AppState = {
+  locale: string;
   counter: number;
 }
 
