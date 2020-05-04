@@ -2,9 +2,10 @@ import * as rest from '../../utils/rest';
 import React, { useState, FormEvent } from 'react';
 import './App.scss';
 import { User } from '../../types';
+import Display from '../../utils/Display';
 
 function App(): JSX.Element {
-  const [allUsers, setAllUsers] = useState<Array<User>>([]);
+  const [allUsers, setAllUsers] = useState<User[]>([]);
   const [error, setError] = useState('');
   const [needConfirm, setNeedConfirm] = useState(false);
 
@@ -17,35 +18,32 @@ function App(): JSX.Element {
 
     if (needConfirm) {
       rest.confirmSignUp({ email: email.value, confirmationCode: confirmationCode.value })
-        .then(response => {
+        .then(() => setNeedConfirm(false))
+        .catch(response => {
           if (response.error) return setError(response.error.message);
-          setNeedConfirm(false);
         });
     } else {
       rest.signUp({ email: email.value, password: password.value })
-        .then(response => {
+        .then(() => setNeedConfirm(true))
+        .catch(response => {
           if (response.error) return setError(response.error.message);
-          setNeedConfirm(true);
-        }); 
+        });
     }
   }
 
   function handleGetAllUsers(): void {
-    rest.allUsers().then(setAllUsers);
+    rest.allUsers()
+      .then((response) => setAllUsers(response.Users || []))
+      .catch((response) => { if (response.error) setError(response.error.message); });
   }
 
   return (
     <div className="App" onSubmit={handleSubmit}>
-      { error
-        ?
+      <Display if={!!error}>
         <div className="error">
           {error}
         </div>
-        : ''
-      }
-      {
-        
-      }
+      </Display>
       <form>
         <label>Email: 
           <input type="email" name="email"/>
@@ -55,25 +53,23 @@ function App(): JSX.Element {
           <input type="password" name="password"/>
         </label>
         <br/>
-        { needConfirm
-          ? 
+        <Display if={needConfirm}>
           <label>Confirm code: 
             <input type="text" name="confirmationCode"/>
             <span className="green">Check your email</span>
           </label>
-          : ''
-        }
+        </Display>
         <br/>
         <button type="submit">Submit</button>
         <button type="button" onClick={handleGetAllUsers}>Get all users</button>
       </form>
-
-      { allUsers.length ?
+      <br/>
+      <Display if={!!allUsers.length}>
         <div>
           All users:
           <ul>
             { allUsers.map((user, index) => {
-              const email = user.Attributes.find(({ Name }) => Name === 'email')?.Value;
+              const email = user.Attributes?.find(({ Name }) => Name === 'email')?.Value;
               return (
                 <li key={index}>
                   {email}{' '} [{user.UserStatus}]
@@ -82,9 +78,7 @@ function App(): JSX.Element {
             })}
           </ul>
         </div>
-        : ''
-      }
-
+      </Display>
     </div>
   );
 }

@@ -1,11 +1,20 @@
+import { ListUsersResponse, SignUpResponse } from '../types';
+
 const API = process.env.REACT_APP_API;
 
-export async function allUsers() {
+export async function allUsers(): Promise<ListUsersResponse> {
   const response = await fetch(API + '/listUsers', { method: 'POST' });
-  return await response.json();
+  const result =  await response.json();
+
+  if (response.ok) return result;
+  throw result;
 }
 
-export async function signUp({ password, email }: any) {
+export type SignUpProp = {
+  password: string;
+  email: string;
+}
+export async function signUp({ password, email}: SignUpProp): Promise<SignUpResponse> {
   const response = await fetch(API + '/signUp', {
     method: 'POST',
     headers: {
@@ -16,11 +25,18 @@ export async function signUp({ password, email }: any) {
       email
     })
   });
- 
-  return await response.json();
+  const result =  await response.json();
+
+  if (response.ok) return result;
+  throw result;
 }
 
-export async function confirmSignUp({ confirmationCode, email }: any) {
+export type ConfirmSignUpProp = {
+  confirmationCode: string;
+  email: string;
+}
+
+export async function confirmSignUp({ confirmationCode, email }: ConfirmSignUpProp): Promise<object> {
   const response = await fetch(API + '/confirmSignUp', {
     method: 'POST',
     headers: {
@@ -32,5 +48,8 @@ export async function confirmSignUp({ confirmationCode, email }: any) {
     })
   });
  
-  return await response.json();
+  const result =  await response.json();
+
+  if (response.ok) return result;
+  throw result;
 }
