@@ -1,4 +1,4 @@
-import { ListUsersResponse, SignUpResponse } from '../types';
+import { ListUsersResponse, SignUpResponse, User } from '../types';
 
 const API = process.env.REACT_APP_API;
 
@@ -48,6 +48,27 @@ export async function confirmSignUp({ confirmationCode, email }: ConfirmSignUpPr
     })
   });
  
+  const result =  await response.json();
+
+  if (response.ok) return result;
+  throw result;
+}
+
+export type LoginProp = {
+  password: string;
+  email: string;
+}
+export async function login({ password, email}: LoginProp): Promise<User> {
+  const response = await fetch(API + '/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      password,
+      email
+    })
+  });
   const result =  await response.json();
 
   if (response.ok) return result;
