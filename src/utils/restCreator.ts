@@ -52,7 +52,7 @@ export default class RestCreator {
   private processResponse<T>(response: Response): Promise<T> {
     if (!response.ok) {
       return response.json()
-        .catch(() => { throw { errorText: response }; })
+        .catch(() => { throw response; })
         .then(error => { throw error; });
     }
 
