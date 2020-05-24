@@ -1,11 +1,11 @@
 import * as rest from '../../utils/rest';
 import React, { useState, FormEvent } from 'react';
 import './App.scss';
-import { User } from '../../types';
+import { oldUser } from '../../types';
 import Display from '../../utils/Display';
 
 function App(): JSX.Element {
-  const [allUsers, setAllUsers] = useState<User[]>([]);
+  const [allUsers, setAllUsers] = useState<oldUser[]>([]);
   const [error, setError] = useState('');
   const [needConfirm, setNeedConfirm] = useState(false);
 
@@ -17,13 +17,13 @@ function App(): JSX.Element {
     const confirmationCode = target.elements[2] as HTMLInputElement;
 
     if (needConfirm) {
-      rest.confirmSignUp({ email: email.value, confirmationCode: confirmationCode.value })
+      rest.oldConfirmSignUp({ email: email.value, confirmationCode: confirmationCode.value })
         .then(() => setNeedConfirm(false))
         .catch(response => {
           if (response.error) return setError(response.error.message);
         });
     } else {
-      rest.signUp({ email: email.value, password: password.value })
+      rest.oldSignUp({ email: email.value, password: password.value })
         .then(() => setNeedConfirm(true))
         .catch(response => {
           if (response.error) return setError(response.error.message);
@@ -38,7 +38,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <div className="App" onSubmit={handleSubmit}>
+    <div className="app-page" onSubmit={handleSubmit}>
       <Display if={!!error}>
         <div className="error">
           {error}
