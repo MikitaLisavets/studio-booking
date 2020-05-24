@@ -7,13 +7,15 @@ import Login from './pages/login/Login';
 
 export default function AppRouter(): JSX.Element {
   return (
-    <Router>
-      <Switch>
-        <Route path="/signup" component={SignUp} />
-        <Route path="/login" component={Login} />
-        <Route path="/app" component={App} />
-        <Route path="/" component={Main} />
-      </Switch>
-    </Router>
+    <div className="container">
+      <Router>
+        <Switch>
+          <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={Login} />
+          <Route path="/app" component={App} />
+          <Route path="/" component={Main} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
