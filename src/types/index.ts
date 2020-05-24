@@ -11,11 +11,19 @@ export type Attribute = {
   Value?: string;
 }
 
-export type User = {
+export type oldUser = {
   Username?: string;
   Attributes?: Attribute[];
   Enabled?: boolean;
   UserStatus?: UserStatus;
+}
+
+export type User = {
+  sub?: string;
+  email?: string;
+  email_verified?: string;
+  phone_number?: string;
+  phone_number_verified?: string;
 }
 
 export type Error = {
@@ -30,7 +38,7 @@ export type SignUpResponse = {
 }
 
 export type ListUsersResponse = {
-  Users?: User[];
+  Users?: oldUser[];
   PaginationToken?: string;
 }
 

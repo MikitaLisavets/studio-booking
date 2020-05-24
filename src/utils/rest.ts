@@ -1,6 +1,9 @@
-import { ListUsersResponse, SignUpResponse } from '../types';
+import { ListUsersResponse, User } from '../types';
+import RestCreator from './restCreator';
 
-const API = process.env.REACT_APP_API;
+
+export const API = process.env.REACT_APP_API || '';
+const rest = new RestCreator(API);
 
 export async function allUsers(): Promise<ListUsersResponse> {
   const response = await fetch(API + '/listUsers', { method: 'POST' });
@@ -14,7 +17,7 @@ export type SignUpProp = {
   password: string;
   email: string;
 }
-export async function signUp({ password, email}: SignUpProp): Promise<SignUpResponse> {
+export async function oldSignUp({ password, email}: SignUpProp): Promise<SignUpResponse> {
   const response = await fetch(API + '/signUp', {
     method: 'POST',
     headers: {
@@ -36,7 +39,7 @@ export type ConfirmSignUpProp = {
   email: string;
 }
 
-export async function confirmSignUp({ confirmationCode, email }: ConfirmSignUpProp): Promise<object> {
+export async function oldConfirmSignUp({ confirmationCode, email }: ConfirmSignUpProp): Promise<object> {
   const response = await fetch(API + '/confirmSignUp', {
     method: 'POST',
     headers: {
@@ -52,4 +55,50 @@ export async function confirmSignUp({ confirmationCode, email }: ConfirmSignUpPr
 
   if (response.ok) return result;
   throw result;
+}
+
+// new API
+
+export const SIGN_UP_URL = '/signUp';
+export interface SignUpRequest {
+  email: string;
+  phoneNumber: string;
+  password: string;
+}
+
+export interface SignUpResponse {
+  UserConfirmed: boolean;
+}
+
+export function signUp(params: SignUpRequest, errorHandler: ((error: Error) => void) | null = null): Promise<SignUpResponse | void> {
+  return rest.post<SignUpResponse>(SIGN_UP_URL, params, {}, errorHandler);
+}
+
+export const CONFIRM_SIGN_UP_URL = '/confirmSignUp';
+export interface ConfirmSignUpRequest {
+  confirmationCode: string;
+  email: string;
+  password: string;
+}
+
+export interface ConfirmSignUpResponse {
+  user: User;
+}
+
+export function confirmSignUp(params: ConfirmSignUpRequest, errorHandler: ((error: Error) => void) | null = null): Promise<ConfirmSignUpResponse | void> {
+  return rest.post<ConfirmSignUpResponse>(CONFIRM_SIGN_UP_URL, params, {}, errorHandler);
+}
+
+export const LOGIN_URL = '/login';
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  user: User;
+}
+
+export function login(params: LoginRequest, errorHandler: ((error: Error) => void) | null = null): Promise<LoginResponse | void> {
+  return rest.post<LoginResponse>(LOGIN_URL, params, {}, errorHandler);
 }

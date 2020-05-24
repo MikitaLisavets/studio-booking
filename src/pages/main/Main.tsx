@@ -21,7 +21,7 @@ export default function Main(): JSX.Element {
 
 
   return (
-    <div className="container">
+    <div className="main-page">
       <Header/>
       <div>Lang:</div>
       <select onBlur={setLocale} onChange={setLocale}>
