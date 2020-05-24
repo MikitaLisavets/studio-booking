@@ -57,27 +57,6 @@ export async function oldConfirmSignUp({ confirmationCode, email }: ConfirmSignU
   throw result;
 }
 
-export type LoginProp = {
-  password: string;
-  email: string;
-}
-export async function login({ password, email}: LoginProp): Promise<User> {
-  const response = await fetch(API + '/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      password,
-      email
-    })
-  });
-  const result =  await response.json();
-
-  if (response.ok) return result;
-  throw result;
-}
-
 // new API
 
 export const SIGN_UP_URL = '/signUp';
@@ -108,4 +87,18 @@ export interface ConfirmSignUpResponse {
 
 export function confirmSignUp(params: ConfirmSignUpRequest, errorHandler: ((error: Error) => void) | null = null): Promise<ConfirmSignUpResponse | void> {
   return rest.post<ConfirmSignUpResponse>(CONFIRM_SIGN_UP_URL, params, {}, errorHandler);
+}
+
+export const LOGIN_URL = '/login';
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  user: User;
+}
+
+export function login(params: LoginRequest, errorHandler: ((error: Error) => void) | null = null): Promise<LoginResponse | void> {
+  return rest.post<LoginResponse>(LOGIN_URL, params, {}, errorHandler);
 }
