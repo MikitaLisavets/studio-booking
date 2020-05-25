@@ -1,5 +1,5 @@
 export type AppState = {
-  error: Error | null;
+  error: ErrorRequest | null;
   locale: string;
   counter: number;
 }
@@ -26,12 +26,6 @@ export type User = {
   phone_number_verified?: string;
 }
 
-export type Error = {
-  code: string;
-  message: string;
-  statusCode: number;
-}
-
 export type SignUpResponse = {
   UserConfirmed: boolean;
   UserSub: string;
@@ -47,4 +41,10 @@ export type GetUserResponse = {
   UserAttributes?: Attribute;
   Enabled?: boolean;
   UserStatus?: UserStatus;
+}
+
+export type ErrorRequest = {
+  message: string;
+  code?: string;
+  statusCode?: number;
 }

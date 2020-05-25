@@ -1,7 +1,8 @@
 import { stringify } from './urls';
+import { ErrorRequest } from '../types';
 
 export default class RestCreator {
-  errorHandler: () => void;
+  errorHandler: (error: ErrorRequest) => void;
   apiUrl: string
 
   constructor(apiUrl: string) {
@@ -9,11 +10,11 @@ export default class RestCreator {
     this.apiUrl = apiUrl;
   }
 
-  setErrorHandler(handler: () => void): void {
+  setErrorHandler(handler: (error: ErrorRequest) => void): void {
     this.errorHandler = handler;
   }
 
-  get<T>(url: string, queryParams = {}, errorHandler: ((error: Error) => void) | null = null): Promise<T | void> {
+  get<T>(url: string, queryParams = {}, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<T | void> {
     const stringifyQueryParams = stringify(queryParams);
 
     const fullUrl = [
@@ -27,7 +28,7 @@ export default class RestCreator {
       .catch(errorHandler || this.errorHandler);
   }
 
-  post<T>(url: string, postParams = {}, queryParams = {}, errorHandler: ((error: Error) => void) | null = null): Promise<T | void> {
+  post<T>(url: string, postParams = {}, queryParams = {}, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<T | void> {
     const stringifyQueryParams = stringify(queryParams);
 
     const fullUrl = [

@@ -1,9 +1,9 @@
-import { ListUsersResponse, User } from '../types';
+import { ListUsersResponse, User, ErrorRequest } from '../types';
 import RestCreator from './restCreator';
 
 
 export const API = process.env.REACT_APP_API || '';
-const rest = new RestCreator(API);
+export const rest = new RestCreator(API);
 
 export async function allUsers(): Promise<ListUsersResponse> {
   const response = await fetch(API + '/listUsers', { method: 'POST' });
@@ -70,7 +70,7 @@ export interface SignUpResponse {
   UserConfirmed: boolean;
 }
 
-export function signUp(params: SignUpRequest, errorHandler: ((error: Error) => void) | null = null): Promise<SignUpResponse | void> {
+export function signUp(params: SignUpRequest, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<SignUpResponse | void> {
   return rest.post<SignUpResponse>(SIGN_UP_URL, params, {}, errorHandler);
 }
 
@@ -85,7 +85,7 @@ export interface ConfirmSignUpResponse {
   user: User;
 }
 
-export function confirmSignUp(params: ConfirmSignUpRequest, errorHandler: ((error: Error) => void) | null = null): Promise<ConfirmSignUpResponse | void> {
+export function confirmSignUp(params: ConfirmSignUpRequest, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<ConfirmSignUpResponse | void> {
   return rest.post<ConfirmSignUpResponse>(CONFIRM_SIGN_UP_URL, params, {}, errorHandler);
 }
 
@@ -99,6 +99,6 @@ export interface LoginResponse {
   user: User;
 }
 
-export function login(params: LoginRequest, errorHandler: ((error: Error) => void) | null = null): Promise<LoginResponse | void> {
+export function login(params: LoginRequest, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<LoginResponse | void> {
   return rest.post<LoginResponse>(LOGIN_URL, params, {}, errorHandler);
 }
