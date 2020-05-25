@@ -1,5 +1,7 @@
-import { Action } from 'redux';
-import { Error } from '../types';
+import { Action, AnyAction } from 'redux';
+import { AppState, ErrorRequest } from '../types';
+import { rest } from '../utils/rest';
+import { ThunkAction } from 'redux-thunk';
 
 export const SET_LOCALE = 'SET_LOCALE';
 
@@ -22,7 +24,7 @@ export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 interface SetErrorAction {
   type: typeof SET_ERROR;
-  payload: Error;
+  payload: ErrorRequest;
 }
 
 interface ClearErrorAction {
@@ -30,7 +32,7 @@ interface ClearErrorAction {
 }
 export type ErrorActionType = SetErrorAction | ClearErrorAction;
 
-export function setError(error: Error): ErrorActionType {
+export function setError(error: ErrorRequest): ErrorActionType {
   return {
     type: SET_ERROR,
     payload: error
@@ -53,5 +55,11 @@ export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 export function decrement(): Action {
   return {
     type: DECREMENT_COUNTER,
+  };
+}
+
+export function initApp(): ThunkAction<void, AppState, never, AnyAction> {
+  return (dispatch): void => {
+    rest.setErrorHandler(error => { dispatch(setError(error)); });
   };
 }
