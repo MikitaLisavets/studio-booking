@@ -1,4 +1,4 @@
-import * as Actions from '../actions';
+import * as Actions from '../actions/CommonActions';
 import { AppState, ErrorRequest } from '../types';
 import { combineReducers, Action } from 'redux';
 

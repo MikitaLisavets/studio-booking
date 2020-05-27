@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import AppRouter from './appRouter';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { initApp } from './actions';
+import { initApp } from './actions/CommonActions';
 import rootReducer, { initialState } from './reducers';
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 import { AppState } from './types';
