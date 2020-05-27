@@ -1,5 +1,5 @@
 import { stringify } from './urls';
-import { ErrorRequest } from '../types';
+import { ErrorRequest } from '../types/Types';
 
 export default class RestCreator {
   errorHandler: (error: ErrorRequest) => void;
