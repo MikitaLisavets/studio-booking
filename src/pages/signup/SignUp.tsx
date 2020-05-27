@@ -21,11 +21,9 @@ export default function SignUp(): JSX.Element {
 
     setUserData({ email, phoneNumber, password });
 
-    rest.signUp({ email, phoneNumber, password }, (error) => { console.log(error); })
+    rest.signUp({ email, phoneNumber, password })
       .then((response) => {
-        if (!response) return;
-        console.log(response.UserConfirmed);
-        setConfirmStage(true);
+        if (response) setConfirmStage(!response.UserConfirmed);
       });
   }
 

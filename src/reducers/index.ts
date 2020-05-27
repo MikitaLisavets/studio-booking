@@ -1,5 +1,5 @@
 import * as Actions from '../actions';
-import { AppState, Error } from '../types';
+import { AppState, ErrorRequest } from '../types';
 import { combineReducers, Action } from 'redux';
 
 export const initialState: AppState = {
@@ -8,10 +8,12 @@ export const initialState: AppState = {
   counter: 0
 };
 
-export function error(state = initialState.error, action: Actions.ErrorActionType): Error | null {
+export function error(state = initialState.error, action: Actions.ErrorActionType): ErrorRequest | null {
   switch (action.type) {
   case Actions.SET_ERROR:
-    return action.payload;
+    return !action.payload.statusCode
+      ? { statusCode: 500, code: 'SystemException', message: action.payload.message}
+      : action.payload;
   case Actions.CLEAR_ERROR:
     return null;
   default:
