@@ -1,5 +1,5 @@
 import { Action, AnyAction } from 'redux';
-import { AppState, ErrorRequest } from '../types';
+import { AppState, ErrorRequest } from '../types/Types';
 import { rest } from '../utils/rest';
 import { ThunkAction } from 'redux-thunk';
 

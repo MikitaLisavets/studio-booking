@@ -3,7 +3,7 @@ import React from 'react';
 import useShallowEqualSelector from '../../hooks/useShallowEqualSelector';
 import useAction from '../../hooks/useAction';
 import { getCounter, getLocale } from '../../selectors';
-import * as Actions from '../../actions/CommonActions';
+import * as Actions from '../../actions/Actions';
 import Header from '../../components/header/Header';
 import L from '../../utils/locale';
 import { useDispatch } from 'react-redux';

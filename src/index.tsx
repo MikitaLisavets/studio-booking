@@ -5,10 +5,10 @@ import * as serviceWorker from './serviceWorker';
 import AppRouter from './appRouter';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { initApp } from './actions/CommonActions';
-import rootReducer, { initialState } from './reducers/CommonReducers';
+import { initApp } from './actions/Actions';
+import rootReducer, { initialState } from './reducers/Reducers';
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
-import { AppState } from './types';
+import { AppState } from './types/Types';
 
 const middleware = applyMiddleware(thunkMiddleware);
 const isDev = process.env.REACT_APP_STAGE === 'dev';
