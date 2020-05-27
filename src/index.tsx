@@ -6,7 +6,7 @@ import AppRouter from './appRouter';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { initApp } from './actions/CommonActions';
-import rootReducer, { initialState } from './reducers';
+import rootReducer, { initialState } from './reducers/CommonReducers';
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 import { AppState } from './types';
 
