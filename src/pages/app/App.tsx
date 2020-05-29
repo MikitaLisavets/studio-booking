@@ -1,7 +1,7 @@
 import * as rest from '../../utils/rest';
 import React, { useState, FormEvent } from 'react';
 import './App.scss';
-import { oldUser } from '../../types';
+import { oldUser } from '../../types/Types';
 import Display from '../../utils/Display';
 
 function App(): JSX.Element {

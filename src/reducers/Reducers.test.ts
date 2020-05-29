@@ -1,5 +1,5 @@
-import * as Actions from '../actions';
-import * as Reducers from './index';
+import * as Actions from '../actions/Actions';
+import * as Reducers from './Reducers';
 
 describe('Reducers', () => {
   describe('initialState', () => {

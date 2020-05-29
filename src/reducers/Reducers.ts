@@ -1,5 +1,5 @@
-import * as Actions from '../actions';
-import { AppState, ErrorRequest } from '../types';
+import * as Actions from '../actions/Actions';
+import { AppState, ErrorRequest } from '../types/Types';
 import { combineReducers, Action } from 'redux';
 
 export const initialState: AppState = {

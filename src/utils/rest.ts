@@ -1,4 +1,4 @@
-import { ListUsersResponse, User, ErrorRequest } from '../types';
+import { ListUsersResponse, User, ErrorRequest } from '../types/Types';
 import RestCreator from './restCreator';
 
 
