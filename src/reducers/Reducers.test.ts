@@ -2,11 +2,11 @@ import * as Actions from '../actions/Actions';
 import * as Reducers from './Reducers';
 
 describe('Reducers', () => {
-  describe('initialState', () => {
-    it('returns initial state snapshot', () => {
-      expect(Reducers.initialState).toMatchSnapshot();
-    });
-  });
+  // describe('initialState', () => {
+  //   it('returns initial state snapshot', () => {
+  //     expect(Reducers.initialState).toMatchSnapshot();
+  //   });
+  // });
 
   describe('locale', () => {
     const action: Actions.LocaleAction = {
