@@ -1,4 +1,5 @@
 export type AppState = {
+  user: User | null;
   error: ErrorRequest | null;
   locale: string;
   counter: number;

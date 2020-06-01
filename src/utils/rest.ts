@@ -102,3 +102,14 @@ export interface LoginResponse {
 export function login(params: LoginRequest, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<LoginResponse | void> {
   return rest.post<LoginResponse>(LOGIN_URL, params, {}, errorHandler);
 }
+
+
+export const UPDATE_SESSION_URL = '/updateSession';
+
+export interface UpdateSessionResponse {
+  user: User;
+}
+
+export function updateSession(errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<LoginResponse | void> {
+  return rest.post<UpdateSessionResponse>(UPDATE_SESSION_URL, {}, {}, errorHandler);
+}

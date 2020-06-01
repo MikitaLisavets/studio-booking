@@ -23,6 +23,7 @@ describe('RestCreator', () => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         },
+        credentials: 'include',
         method: 'POST',
         mode: 'cors'
       });
@@ -36,6 +37,7 @@ describe('RestCreator', () => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         },
+        credentials: 'include',
         method: 'POST',
         mode: 'cors'
       });
@@ -48,6 +50,7 @@ describe('RestCreator', () => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         },
+        credentials: 'include',
         method: 'POST',
         mode: 'cors'
       });
@@ -60,6 +63,7 @@ describe('RestCreator', () => {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         },
+        credentials: 'include',
         method: 'POST',
         mode: 'cors'
       });
@@ -76,6 +80,7 @@ describe('RestCreator', () => {
 
       expect(fetchMock).toHaveBeenCalledWith('/api/test', {
         method: 'GET',
+        credentials: 'include',
         mode: 'cors'
       });
     });
@@ -84,6 +89,7 @@ describe('RestCreator', () => {
       rest.get('/test', { queryParam1: 'queryValue1' });
       expect(fetchMock).toHaveBeenCalledWith('/api/test?queryParam1=queryValue1', {
         method: 'GET',
+        credentials: 'include',
         mode: 'cors'
       });
     });

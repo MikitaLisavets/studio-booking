@@ -1,8 +1,11 @@
 import React, { FormEvent, useState } from 'react';
 import * as rest from '../../utils/rest';
 import Display from '../../utils/Display';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../actions/Actions';
 
 export default function SignUp(): JSX.Element {
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({
     email: '',
     phoneNumber: '',
@@ -36,8 +39,7 @@ export default function SignUp(): JSX.Element {
 
     rest.confirmSignUp({ confirmationCode, email: userData.email, password: userData.password }, (error) => { console.log(error); })
       .then((response) => {
-        if (!response) return;
-        console.log(response.user);
+        if (response) dispatch(setUser(response.user));
       });
 
     return;

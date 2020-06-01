@@ -1,4 +1,4 @@
-name: CI - Deploy master branch
+name: Deploy master branch
 on:
   push:
     branches:
@@ -15,9 +15,6 @@ jobs:
     - name: Yarn Install
       run: |
           yarn install
-    - name: Unit Tests
-      run: |
-        yarn test
     - name: Production Build
       env:
         REACT_APP_API: ${{secrets.REACT_APP_API}} 

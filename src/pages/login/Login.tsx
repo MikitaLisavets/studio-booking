@@ -1,7 +1,11 @@
 import * as rest from '../../utils/rest';
 import React, { FormEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../actions/Actions';
 
 export default function Login(): JSX.Element {
+  const dispatch = useDispatch();
+
   function handleLoginSubmit(event: FormEvent): void {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
@@ -12,8 +16,7 @@ export default function Login(): JSX.Element {
 
     rest.login({ email, password }, (error) => { console.log(error); })
       .then((response) => {
-        if (!response) return;
-        console.log(response.user);
+        if (response) dispatch(setUser(response.user));
       });
   }
 
