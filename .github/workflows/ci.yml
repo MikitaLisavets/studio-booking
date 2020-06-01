@@ -8,7 +8,9 @@ jobs:
     name: ci
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@dev
+    - uses: actions/checkout@master
+      with:
+        ref: dev
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
