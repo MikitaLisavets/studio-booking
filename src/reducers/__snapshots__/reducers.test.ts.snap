@@ -5,5 +5,6 @@ Object {
   "counter": 0,
   "error": null,
   "locale": "en",
+  "user": null,
 }
 `;
