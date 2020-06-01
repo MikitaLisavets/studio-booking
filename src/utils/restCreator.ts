@@ -14,7 +14,7 @@ export default class RestCreator {
     this.errorHandler = handler;
   }
 
-  get<T>(url: string, queryParams = {}, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<T | void> {
+  get<T>(url: string, queryParams = {}, options = {}, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<T | void> {
     const stringifyQueryParams = stringify(queryParams);
 
     const fullUrl = [
@@ -23,12 +23,12 @@ export default class RestCreator {
       stringifyQueryParams ? `?${stringifyQueryParams}` : ''
     ].join('');
 
-    return fetch(fullUrl, { method: 'GET', mode: 'cors', credentials: 'include' })
+    return fetch(fullUrl, { method: 'GET', ...options })
       .then((response: Response) => this.processResponse<T>(response))
       .catch(errorHandler || this.errorHandler);
   }
 
-  post<T>(url: string, postParams = {}, queryParams = {}, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<T | void> {
+  post<T>(url: string, postParams = {}, queryParams = {}, options = {}, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<T | void> {
     const stringifyQueryParams = stringify(queryParams);
 
     const fullUrl = [
@@ -40,12 +40,11 @@ export default class RestCreator {
     return fetch(
       fullUrl, {
         method:  'POST',
-        mode:    'cors',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         },
-        body:    JSON.stringify(postParams)
+        body:    JSON.stringify(postParams),
+        ...options
       })
       .then((response: Response) => this.processResponse<T>(response))
       .catch(errorHandler || this.errorHandler);
