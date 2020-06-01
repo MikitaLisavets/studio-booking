@@ -2,7 +2,7 @@
 
 exports[`Reducers initialState returns initial state snapshot 1`] = `
 Object {
-  "counter": 1,
+  "counter": 0,
   "error": null,
   "locale": "en",
   "user": null,

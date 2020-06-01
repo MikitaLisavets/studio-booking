@@ -6,7 +6,7 @@ export const initialState: AppState = {
   user: null,
   error: null,
   locale: 'en',
-  counter: 1
+  counter: 0
 };
 
 export function user(state = initialState.user, action: Actions.UserActionType): User | null {
