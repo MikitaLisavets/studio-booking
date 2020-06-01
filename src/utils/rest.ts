@@ -71,7 +71,7 @@ export interface SignUpResponse {
 }
 
 export function signUp(params: SignUpRequest, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<SignUpResponse | void> {
-  return rest.post<SignUpResponse>(SIGN_UP_URL, params, {}, errorHandler);
+  return rest.post<SignUpResponse>(SIGN_UP_URL, params, {}, {}, errorHandler);
 }
 
 export const CONFIRM_SIGN_UP_URL = '/confirmSignUp';
@@ -86,7 +86,7 @@ export interface ConfirmSignUpResponse {
 }
 
 export function confirmSignUp(params: ConfirmSignUpRequest, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<ConfirmSignUpResponse | void> {
-  return rest.post<ConfirmSignUpResponse>(CONFIRM_SIGN_UP_URL, params, {}, errorHandler);
+  return rest.post<ConfirmSignUpResponse>(CONFIRM_SIGN_UP_URL, params, {}, {}, errorHandler);
 }
 
 export const LOGIN_URL = '/login';
@@ -100,7 +100,7 @@ export interface LoginResponse {
 }
 
 export function login(params: LoginRequest, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<LoginResponse | void> {
-  return rest.post<LoginResponse>(LOGIN_URL, params, {}, errorHandler);
+  return rest.post<LoginResponse>(LOGIN_URL, params, {}, {}, errorHandler);
 }
 
 
@@ -111,5 +111,5 @@ export interface UpdateSessionResponse {
 }
 
 export function updateSession(errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<LoginResponse | void> {
-  return rest.post<UpdateSessionResponse>(UPDATE_SESSION_URL, {}, {}, errorHandler);
+  return rest.post<UpdateSessionResponse>(UPDATE_SESSION_URL, {}, {}, { credentials: 'include' }, errorHandler);
 }
