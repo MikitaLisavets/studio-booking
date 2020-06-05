@@ -100,7 +100,7 @@ export interface LoginResponse {
 }
 
 export function login(params: LoginRequest, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<LoginResponse | void> {
-  return rest.post<LoginResponse>(LOGIN_URL, params, {}, {}, errorHandler);
+  return rest.post<LoginResponse>(LOGIN_URL, params, {}, { credentials: 'include' }, errorHandler);
 }
 
 
