@@ -3,9 +3,12 @@ import * as rest from '../../utils/rest';
 import Display from '../../utils/Display';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../actions/Actions';
+import { useHistory } from 'react-router-dom';
+import { MAIN_ROUTE } from '../../constants/navigation';
 
 export default function SignUp(): JSX.Element {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [userData, setUserData] = useState({
     email: '',
     phoneNumber: '',
@@ -39,7 +42,9 @@ export default function SignUp(): JSX.Element {
 
     rest.confirmSignUp({ confirmationCode, email: userData.email, password: userData.password }, (error) => { console.log(error); })
       .then((response) => {
-        if (response) dispatch(setUser(response.user));
+        if (!response) return;
+        dispatch(setUser(response.user));
+        history.push(MAIN_ROUTE);
       });
 
     return;

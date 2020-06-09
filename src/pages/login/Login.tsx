@@ -2,9 +2,12 @@ import * as rest from '../../utils/rest';
 import React, { FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../actions/Actions';
+import { useHistory } from 'react-router-dom';
+import { MAIN_ROUTE } from '../../constants/navigation';
 
 export default function Login(): JSX.Element {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function handleLoginSubmit(event: FormEvent): void {
     event.preventDefault();
@@ -16,21 +19,22 @@ export default function Login(): JSX.Element {
 
     rest.login({ email, password }, (error) => { console.log(error); })
       .then((response) => {
-        if (response) dispatch(setUser(response.user));
+        if (!response) return;
+        dispatch(setUser(response.user));
+        history.push(MAIN_ROUTE);
       });
   }
-
 
   return (
     <div className="login-page">
       <form action={`${rest.API}${rest.LOGIN_URL}`} method="POST" onSubmit={handleLoginSubmit}>
         <fieldset>
           <label htmlFor="email">Email:</label><br/>
-          <input id="email" type="email" name="email"/>
+          <input id="email" type="email" name="email" value="xosaj13634@seberkd.com"/>
         </fieldset>
         <fieldset>
           <label htmlFor="password">Password:</label><br/>
-          <input id="password" type="password" name="password"/>
+          <input id="password" type="password" name="password" value="Testest1"/>
         </fieldset>
         <br/>
         <button type="submit">Submit</button>
