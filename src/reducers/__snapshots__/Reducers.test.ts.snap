@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reducers initialState returns initial state snapshot 1`] = `
+Object {
+  "error": null,
+  "locale": "en",
+  "user": null,
+}
+`;

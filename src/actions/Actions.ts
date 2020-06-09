@@ -1,4 +1,4 @@
-import { Action, AnyAction } from 'redux';
+import { AnyAction } from 'redux';
 import { AppState, ErrorRequest, User } from '../types/Types';
 import { rest, updateSession } from '../utils/rest';
 import { ThunkAction } from 'redux-thunk';
@@ -43,21 +43,6 @@ export function clearError(): ErrorActionType {
     type: CLEAR_ERROR
   };
 }
-
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export function increment(): Action {
-  return {
-    type: INCREMENT_COUNTER,
-  };
-}
-
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
-export function decrement(): Action {
-  return {
-    type: DECREMENT_COUNTER,
-  };
-}
-
 
 export const SET_USER = 'SET_USER';
 export const CLEAR_USER = 'CLEAR_USER';
