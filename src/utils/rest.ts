@@ -1,63 +1,8 @@
-import { ListUsersResponse, User, ErrorRequest } from '../types/Types';
+import { User, ErrorRequest } from '../types/Types';
 import RestCreator from './restCreator';
-
 
 export const API = process.env.REACT_APP_API || '';
 export const rest = new RestCreator(API);
-
-export async function allUsers(): Promise<ListUsersResponse> {
-  const response = await fetch(API + '/listUsers', { method: 'POST' });
-  const result =  await response.json();
-
-  if (response.ok) return result;
-  throw result;
-}
-
-export type SignUpProp = {
-  password: string;
-  email: string;
-}
-export async function oldSignUp({ password, email}: SignUpProp): Promise<SignUpResponse> {
-  const response = await fetch(API + '/signUp', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      password,
-      email
-    })
-  });
-  const result =  await response.json();
-
-  if (response.ok) return result;
-  throw result;
-}
-
-export type ConfirmSignUpProp = {
-  confirmationCode: string;
-  email: string;
-}
-
-export async function oldConfirmSignUp({ confirmationCode, email }: ConfirmSignUpProp): Promise<object> {
-  const response = await fetch(API + '/confirmSignUp', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      confirmationCode,
-      email
-    })
-  });
- 
-  const result =  await response.json();
-
-  if (response.ok) return result;
-  throw result;
-}
-
-// new API
 
 export const SIGN_UP_URL = '/signUp';
 export interface SignUpRequest {
