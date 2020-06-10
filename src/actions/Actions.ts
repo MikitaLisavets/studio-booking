@@ -1,18 +1,11 @@
+import * as types from './types';
 import { AnyAction } from 'redux';
 import { AppState, ErrorRequest, User } from '../types/types';
 import { rest, updateSession } from '../utils/rest';
 import { ThunkAction } from 'redux-thunk';
 
 export const SET_LOCALE = 'SET_LOCALE';
-
-interface SetLocaleAction {
-  type: typeof SET_LOCALE;
-  payload: string;
-}
-
-export type LocaleAction = SetLocaleAction;
-
-export function setLocale(locale: string): LocaleAction {
+export function setLocale(locale: string): types.SetLocaleAction {
   return {
     type: SET_LOCALE,
     payload: locale
@@ -20,52 +13,30 @@ export function setLocale(locale: string): LocaleAction {
 }
 
 export const SET_ERROR = 'SET_ERROR';
-export const CLEAR_ERROR = 'CLEAR_ERROR';
-
-interface SetErrorAction {
-  type: typeof SET_ERROR;
-  payload: ErrorRequest;
-}
-
-interface ClearErrorAction {
-  type: typeof CLEAR_ERROR;
-}
-export type ErrorActionType = SetErrorAction | ClearErrorAction;
-
-export function setError(error: ErrorRequest): ErrorActionType {
+export function setError(error: ErrorRequest): types.SetErrorAction {
   return {
     type: SET_ERROR,
     payload: error
   };
 }
-export function clearError(): ErrorActionType {
+
+export const CLEAR_ERROR = 'CLEAR_ERROR';
+export function clearError(): types.ClearErrorAction {
   return {
     type: CLEAR_ERROR
   };
 }
 
 export const SET_USER = 'SET_USER';
-export const CLEAR_USER = 'CLEAR_USER';
-
-interface SetUserAction {
-  type: typeof SET_USER;
-  payload: User;
-}
-
-interface ClearUserAction {
-  type: typeof CLEAR_USER;
-}
-
-export type UserActionType = SetUserAction | ClearUserAction;
-
-export function setUser(user: User): UserActionType {
+export function setUser(user: User): types.SetUserAction {
   return {
     type: SET_USER,
     payload: user
   };
 }
 
-export function clearUser(): UserActionType {
+export const CLEAR_USER = 'CLEAR_USER';
+export function clearUser(): types.ClearUserAction {
   return {
     type: CLEAR_USER
   };
