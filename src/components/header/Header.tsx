@@ -2,7 +2,7 @@ import styles from './Header.module.scss';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import useShallowEqualSelector from '../../hooks/useShallowEqualSelector';
-import { getUser } from '../../selectors';
+import { getUser } from '../../selectors/selectors';
 import Display from '../../utils/Display';
 
 export default function Header(): JSX.Element {
