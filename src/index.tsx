@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import { initApp } from './actions/Actions';
 import rootReducer, { initialState } from './reducers/Reducers';
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
-import { AppState } from './types/Types';
+import { AppState } from './types/types';
 
 const middleware = applyMiddleware(thunkMiddleware);
 const isDev = process.env.REACT_APP_STAGE === 'dev';

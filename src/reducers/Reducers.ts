@@ -1,5 +1,6 @@
 import * as Actions from '../actions/Actions';
-import { AppState, ErrorRequest, User } from '../types/Types';
+import * as actionTypes from '../actions/types';
+import { AppState, ErrorRequest, User } from '../types/types';
 import { combineReducers } from 'redux';
 
 export const initialState: AppState = {
@@ -8,7 +9,7 @@ export const initialState: AppState = {
   locale: 'en'
 };
 
-export function user(state = initialState.user, action: Actions.UserActionType): User | null {
+export function user(state = initialState.user, action: actionTypes.UserActionType): User | null {
   switch (action.type) {
   case Actions.SET_USER:
     return action.payload;
@@ -19,7 +20,7 @@ export function user(state = initialState.user, action: Actions.UserActionType):
   }
 }
 
-export function error(state = initialState.error, action: Actions.ErrorActionType): ErrorRequest | null {
+export function error(state = initialState.error, action: actionTypes.ErrorActionType): ErrorRequest | null {
   switch (action.type) {
   case Actions.SET_ERROR:
     return !action.payload.statusCode
@@ -32,7 +33,7 @@ export function error(state = initialState.error, action: Actions.ErrorActionTyp
   }
 }
 
-export function locale(state = initialState.locale, action: Actions.LocaleAction): string {
+export function locale(state = initialState.locale, action: actionTypes.LocaleAction): string {
   switch (action.type) {
   case Actions.SET_LOCALE:
     return action.payload;

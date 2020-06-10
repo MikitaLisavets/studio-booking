@@ -1,6 +1,6 @@
 import translations from '../translations';
 import useShallowEqualSelector from '../hooks/useShallowEqualSelector';
-import { getLocale } from '../selectors';
+import { getLocale } from '../selectors/selectors';
 
 export default function L(key: string): string {
   const locale = useShallowEqualSelector(getLocale);

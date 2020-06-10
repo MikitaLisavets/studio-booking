@@ -1,4 +1,4 @@
-import { User, ErrorRequest } from '../types/Types';
+import { User, ErrorRequest } from '../types/types';
 import RestCreator from './restCreator';
 
 export const API = process.env.REACT_APP_API || '';

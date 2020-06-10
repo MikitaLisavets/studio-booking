@@ -1,7 +1,7 @@
 import './Main.scss';
 import React from 'react';
 import useShallowEqualSelector from '../../hooks/useShallowEqualSelector';
-import { getLocale } from '../../selectors';
+import { getLocale } from '../../selectors/selectors';
 import * as Actions from '../../actions/Actions';
 import Header from '../../components/header/Header';
 import L from '../../utils/locale';

@@ -1,3 +1,4 @@
+import * as actionTypes from '../actions/types';
 import * as Actions from '../actions/Actions';
 import * as Reducers from './Reducers';
 
@@ -9,7 +10,7 @@ describe('Reducers', () => {
   });
 
   describe('locale', () => {
-    const action: Actions.LocaleAction = {
+    const action: actionTypes.LocaleAction = {
       type:    Actions.SET_LOCALE,
       payload: 'ru'
     };
