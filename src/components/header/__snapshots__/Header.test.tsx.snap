@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header when user exists renders correctly 1`] = `
+<StaticRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+    staticContext={Object {}}
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Header>
+        <div
+          className="header"
+        >
+          <button
+            className="menu"
+          />
+          <h2
+            className="title"
+          >
+            header.logo
+          </h2>
+          <Display
+            if={true}
+          >
+            <div
+              className="profile"
+            >
+              <span>
+                email@email.com
+              </span>
+            </div>
+          </Display>
+          <Display
+            if={false}
+          />
+        </div>
+      </Header>
+    </Provider>
+  </Router>
+</StaticRouter>
+`;
+
+exports[`Header when user is empty renders correctly 1`] = `
+<StaticRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+    staticContext={Object {}}
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Header>
+        <div
+          className="header"
+        >
+          <button
+            className="menu"
+          />
+          <h2
+            className="title"
+          >
+            header.logo
+          </h2>
+          <Display
+            if={false}
+          />
+          <Display
+            if={true}
+          >
+            <div
+              className="profile"
+            >
+              <Link
+                to="/login"
+              >
+                <LinkAnchor
+                  href="/login"
+                  navigate={[Function]}
+                >
+                  <a
+                    href="/login"
+                    onClick={[Function]}
+                  >
+                    header.login
+                  </a>
+                </LinkAnchor>
+              </Link>
+               / 
+              <Link
+                to="/signup"
+              >
+                <LinkAnchor
+                  href="/signup"
+                  navigate={[Function]}
+                >
+                  <a
+                    href="/signup"
+                    onClick={[Function]}
+                  >
+                    header.signup
+                  </a>
+                </LinkAnchor>
+              </Link>
+            </div>
+          </Display>
+        </div>
+      </Header>
+    </Provider>
+  </Router>
+</StaticRouter>
+`;
