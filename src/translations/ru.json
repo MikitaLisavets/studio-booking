@@ -1,3 +1,6 @@
 {
+  "header.logo": "Spot",
+  "header.login": "Логин",
+  "header.signup": "Создать аккаунт",
   "mainPage.title": "Забронируйте ваше время всего за 5$ / час"
 }
