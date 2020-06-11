@@ -1,20 +1,20 @@
 import React, { FormEvent, useState } from 'react';
-import * as rest from '../../utils/rest';
+import * as Rest from '../../utils/rest';
 import Display from '../../utils/Display';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../actions/Actions';
-import { useHistory } from 'react-router-dom';
-import { MAIN_ROUTE } from '../../constants/navigation';
+import { signUp, confirmSignUp } from '../../actions/Actions';
+import useShallowEqualSelector from '../../hooks/useShallowEqualSelector';
+import { getIsCodeConfirmRequired } from '../../selectors/selectors';
 
 export default function SignUp(): JSX.Element {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const isCodeConfirmRequired = useShallowEqualSelector(getIsCodeConfirmRequired);
+
   const [userData, setUserData] = useState({
     email: '',
     phoneNumber: '',
     password: ''
   });
-  const [confirmStage, setConfirmStage] = useState(false);
 
   function handleSignUpSubmit(event: FormEvent): void {
     event.preventDefault();
@@ -26,11 +26,7 @@ export default function SignUp(): JSX.Element {
     if (!email || !phoneNumber || !password) return console.error('Not valid form');
 
     setUserData({ email, phoneNumber, password });
-
-    rest.signUp({ email, phoneNumber, password })
-      .then((response) => {
-        if (response) setConfirmStage(!response.UserConfirmed);
-      });
+    dispatch(signUp({ email, phoneNumber, password }));
   }
 
   function handleConfirmSignUpSubmit(event: FormEvent): void {
@@ -40,22 +36,17 @@ export default function SignUp(): JSX.Element {
 
     if (!confirmationCode) return console.error('Not valid form');
 
-    rest.confirmSignUp({ confirmationCode, email: userData.email, password: userData.password }, (error) => { console.log(error); })
-      .then((response) => {
-        if (!response) return;
-        dispatch(setUser(response.user));
-        history.push(MAIN_ROUTE);
-      });
+    dispatch(confirmSignUp({ confirmationCode, email: userData.email, password: userData.password }));
 
     return;
   }
  
   return (
     <div className="sign-up-page">
-      <Display if={!confirmStage}>
+      <Display if={!isCodeConfirmRequired}>
         <SignUpForm onSubmit={handleSignUpSubmit}/>
       </Display>
-      <Display if={confirmStage}>
+      <Display if={isCodeConfirmRequired}>
         <ConfirmSignUpForm onSubmit={handleConfirmSignUpSubmit}/>
       </Display>
     </div>
@@ -68,7 +59,7 @@ interface SignUpFormProps {
 
 function SignUpForm({ onSubmit }: SignUpFormProps): JSX.Element {
   return (
-    <form action={`${rest.API}${rest.SIGN_UP_URL}`} method="POST" onSubmit={onSubmit}>
+    <form action={`${Rest.API}${Rest.SIGN_UP_URL}`} method="POST" onSubmit={onSubmit}>
       <fieldset>
         <label htmlFor="email">Email:</label><br/>
         <input id="email" type="email" name="email"/>
@@ -93,7 +84,7 @@ interface ConfirmSignUpFormProps {
 
 function ConfirmSignUpForm({ onSubmit }: ConfirmSignUpFormProps): JSX.Element {
   return (
-    <form action={`${rest.API}${rest.CONFIRM_SIGN_UP_URL}`} method="POST" onSubmit={onSubmit}>
+    <form action={`${Rest.API}${Rest.CONFIRM_SIGN_UP_URL}`} method="POST" onSubmit={onSubmit}>
       <fieldset>
         <label htmlFor="confirmationCode">Confirmation code:</label><br/>
         <input id="confirmationCode" type="number" name="confirmationCode"/>
