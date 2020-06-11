@@ -3,6 +3,7 @@
 exports[`Reducers initialState returns initial state snapshot 1`] = `
 Object {
   "error": null,
+  "isCodeConfirmRequired": false,
   "locale": "en",
   "user": null,
 }

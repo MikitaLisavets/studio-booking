@@ -24,3 +24,9 @@ export interface ClearUserAction {
   type: typeof Actions.CLEAR_USER;
 }
 export type UserActionType = SetUserAction | ClearUserAction;
+
+export interface IsCodeConfirmRequiredAction {
+  type: typeof Actions.SET_IS_CODE_CONFIRM_REQUIRED;
+  payload: boolean;
+}
+export type IsCodeConfirmRequiredActionType = IsCodeConfirmRequiredAction;
