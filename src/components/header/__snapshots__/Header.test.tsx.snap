@@ -57,6 +57,14 @@ exports[`Header when user exists renders correctly 1`] = `
               <span>
                 email@email.com
               </span>
+              (
+              <a
+                href="/logout"
+                onClick={[Function]}
+              >
+                header.logout
+              </a>
+              )
             </div>
           </Display>
           <Display
