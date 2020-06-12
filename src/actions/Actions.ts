@@ -1,8 +1,10 @@
 import * as types from './types';
 import { AnyAction } from 'redux';
 import { AppState, ErrorRequest, User } from '../types/types';
-import { rest, updateSession } from '../utils/rest';
+import * as Rest from '../utils/rest';
 import { ThunkAction } from 'redux-thunk';
+import { MAIN_ROUTE } from '../constants/navigation';
+import { history } from '../appRouter';
 
 export const SET_LOCALE = 'SET_LOCALE';
 export function setLocale(locale: string): types.SetLocaleAction {
@@ -42,13 +44,62 @@ export function clearUser(): types.ClearUserAction {
   };
 }
 
+export const SET_IS_CODE_CONFIRM_REQUIRED = 'SET_IS_CODE_CONFIRM_REQUIRED';
+export function setIsCodeConfirmRequired(payload: boolean): types.IsCodeConfirmRequiredAction {
+  return {
+    type: SET_IS_CODE_CONFIRM_REQUIRED,
+    payload
+  };
+}
+
 export function initApp(): ThunkAction<void, AppState, never, AnyAction> {
   return (dispatch): void => {
-    rest.setErrorHandler(error => { dispatch(setError(error)); });
-    updateSession(() => { dispatch(clearUser()); })
+    Rest.rest.setErrorHandler(error => { dispatch(setError(error)); });
+    Rest.updateSession(() => { dispatch(clearUser()); })
       .then((response) => {
         if (!response) return;
         dispatch(setUser(response.user));
+      });
+  };
+}
+
+export function login({ email, password }: Rest.LoginRequest): ThunkAction<void, AppState, never, AnyAction> {
+  return (dispatch): void => {
+    Rest.login({ email, password })
+      .then((response) => {
+        if (!response) return;
+        dispatch(setUser(response.user));
+        history.push(MAIN_ROUTE);
+      });
+  };
+}
+
+export function logout(): ThunkAction<void, AppState, never, AnyAction> {
+  return (dispatch): void => {
+    Rest.logout().then(() => {
+      dispatch(clearUser());
+      history.push(MAIN_ROUTE);
+    });
+  };
+}
+
+export function signUp({ email, phoneNumber, password }: Rest.SignUpRequest): ThunkAction<void, AppState, never, AnyAction> {
+  return (dispatch): void => {
+    Rest.signUp({ email, phoneNumber, password })
+      .then((response) => {
+        if (response) dispatch(setIsCodeConfirmRequired(!response.UserConfirmed));
+      });
+  };
+}
+
+export function confirmSignUp({ confirmationCode, email, password }: Rest.ConfirmSignUpRequest): ThunkAction<void, AppState, never, AnyAction> {
+  return (dispatch): void => {
+    Rest.confirmSignUp({ confirmationCode, email, password })
+      .then((response) => {
+        if (!response) return;
+        dispatch(setUser(response.user));
+        dispatch(setIsCodeConfirmRequired(false));
+        history.push(MAIN_ROUTE);
       });
   };
 }

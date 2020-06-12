@@ -6,7 +6,8 @@ import { combineReducers } from 'redux';
 export const initialState: AppState = {
   user: null,
   error: null,
-  locale: 'en'
+  locale: 'en',
+  isCodeConfirmRequired: false
 };
 
 export function user(state = initialState.user, action: actionTypes.UserActionType): User | null {
@@ -42,8 +43,18 @@ export function locale(state = initialState.locale, action: actionTypes.LocaleAc
   }
 }
 
+export function isCodeConfirmRequired(state = initialState.isCodeConfirmRequired, action: actionTypes.IsCodeConfirmRequiredActionType): boolean {
+  switch (action.type) {
+  case Actions.SET_IS_CODE_CONFIRM_REQUIRED:
+    return action.payload;
+  default:
+    return state;
+  }
+}
+
 export default combineReducers({
   user,
   error,
-  locale
+  locale,
+  isCodeConfirmRequired
 });

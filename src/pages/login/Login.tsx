@@ -1,13 +1,10 @@
-import * as rest from '../../utils/rest';
+import * as Rest from '../../utils/rest';
 import React, { FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../actions/Actions';
-import { useHistory } from 'react-router-dom';
-import { MAIN_ROUTE } from '../../constants/navigation';
+import { login } from '../../actions/Actions';
 
 export default function Login(): JSX.Element {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   function handleLoginSubmit(event: FormEvent): void {
     event.preventDefault();
@@ -17,17 +14,12 @@ export default function Login(): JSX.Element {
 
     if (!email || !password) return console.error('Not valid form');
 
-    rest.login({ email, password }, (error) => { console.log(error); })
-      .then((response) => {
-        if (!response) return;
-        dispatch(setUser(response.user));
-        history.push(MAIN_ROUTE);
-      });
+    dispatch(login({ email, password }));
   }
 
   return (
     <div className="login-page">
-      <form action={`${rest.API}${rest.LOGIN_URL}`} method="POST" onSubmit={handleLoginSubmit}>
+      <form action={`${Rest.API}${Rest.LOGIN_URL}`} method="POST" onSubmit={handleLoginSubmit}>
         <fieldset>
           <label htmlFor="email">Email:</label><br/>
           <input id="email" type="email" name="email" value="xosaj13634@seberkd.com"/>

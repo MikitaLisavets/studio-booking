@@ -1,6 +1,7 @@
 {
   "header.logo": "Spot",
   "header.login": "Log in",
+  "header.logout": "Log out",
   "header.signup": "Create account",
   "mainPage.title": "Book your time for as low as 5$ / hour"
 }

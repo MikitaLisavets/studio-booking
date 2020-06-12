@@ -48,6 +48,12 @@ export function login(params: LoginRequest, errorHandler: ((error: ErrorRequest)
   return rest.post<LoginResponse>(LOGIN_URL, params, {}, { credentials: 'include' }, errorHandler);
 }
 
+export const LOGOUT_URL = '/logout';
+
+export function logout(errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<void> {
+  return rest.post<void>(LOGOUT_URL, {}, {}, { credentials: 'include' }, errorHandler);
+}
+
 
 export const UPDATE_SESSION_URL = '/updateSession';
 

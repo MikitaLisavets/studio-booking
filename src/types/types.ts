@@ -2,6 +2,7 @@ export type AppState = {
   user: User | null;
   error: ErrorRequest | null;
   locale: string;
+  isCodeConfirmRequired: boolean;
 }
 
 export type User = {
