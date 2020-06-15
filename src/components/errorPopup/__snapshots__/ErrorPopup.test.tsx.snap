@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorPopup when there is error renders correctly 1`] = `
+<div
+  className="popup visible"
+>
+  <button
+    className="close"
+    onClick={[Function]}
+  >
+    ✕
+  </button>
+  <p>
+    errorMessage
+  </p>
+</div>
+`;
+
+exports[`ErrorPopup when there is no error renders correctly 1`] = `
+<div
+  className="popup "
+>
+  <button
+    className="close"
+    onClick={[Function]}
+  >
+    ✕
+  </button>
+  <p />
+</div>
+`;

@@ -1,0 +1,40 @@
+@import 'src/styles/variables.scss';
+
+.popup {
+  background: $color-warning;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem 3.2rem 1rem 1rem;
+  opacity: 0;
+  transform: translateY(calc(-100% - 1rem));
+  transition: opacity .2s, transform .3s;
+  width: 100%;
+  max-width: 40rem;
+  min-height: 3.2rem;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.close {
+  appearance: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.2rem;
+  width: 3.2rem;
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  &:hover {
+    color: white;
+  }
+}
