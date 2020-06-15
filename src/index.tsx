@@ -2,13 +2,13 @@ import './styles/index.scss';
 import { createStore, applyMiddleware, compose, AnyAction } from 'redux';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import AppRouter from './appRouter';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { initApp } from './actions/Actions';
 import rootReducer, { initialState } from './reducers/Reducers';
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 import { AppState } from './types/types';
+import App from './pages/app/App';
 
 const middleware = applyMiddleware(thunkMiddleware);
 const isDev = process.env.REACT_APP_STAGE === 'dev';
@@ -21,7 +21,7 @@ dispatch(initApp());
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <AppRouter/>
+      <App/>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

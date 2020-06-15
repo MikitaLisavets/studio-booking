@@ -11,14 +11,12 @@ export const history = createBrowserHistory();
 
 export default function AppRouter(): JSX.Element {
   return (
-    <div className="container">
-      <Router history={history}>
-        <Switch>
-          <Route path={SIGN_UP_ROUTE} component={SignUp} />
-          <Route path={LOGIN_ROUTE} component={Login} />
-          <Route path={MAIN_ROUTE} component={Main} />
-        </Switch>
-      </Router>
-    </div>
+    <Router history={history}>
+      <Switch>
+        <Route path={SIGN_UP_ROUTE} component={SignUp} />
+        <Route path={LOGIN_ROUTE} component={Login} />
+        <Route path={MAIN_ROUTE} component={Main} />
+      </Switch>
+    </Router>
   );
 }
