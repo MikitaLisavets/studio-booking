@@ -62,15 +62,15 @@ function SignUpForm({ onSubmit }: SignUpFormProps): JSX.Element {
     <form action={`${Rest.API}${Rest.SIGN_UP_URL}`} method="POST" onSubmit={onSubmit}>
       <fieldset>
         <label htmlFor="email">Email:</label><br/>
-        <input id="email" type="email" name="email"/>
+        <input id="email" type="email" name="email" required/>
       </fieldset>
       <fieldset>
         <label htmlFor="phoneNumber">Phone number:</label><br/>
-        <input id="phoneNumber" type="tel" name="phoneNumber"/>
+        <input id="phoneNumber" type="tel" name="phoneNumber" required/>
       </fieldset>
       <fieldset>
         <label htmlFor="password">Password:</label><br/>
-        <input id="password" type="password" name="password"/>
+        <input id="password" type="password" name="password" required/>
       </fieldset>
       <br/>
       <button type="submit">Submit</button>
