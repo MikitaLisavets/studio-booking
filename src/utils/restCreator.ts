@@ -23,7 +23,7 @@ export default class RestCreator {
       stringifyQueryParams ? `?${stringifyQueryParams}` : ''
     ].join('');
 
-    return fetch(fullUrl, { method: 'GET', mode: 'cors', ...options })
+    return fetch(fullUrl, { method: 'GET', mode: 'same-origin', ...options })
       .then((response: Response) => this.processResponse<T>(response))
       .catch(errorHandler || this.errorHandler);
   }
@@ -40,7 +40,7 @@ export default class RestCreator {
     return fetch(
       fullUrl, {
         method:  'POST',
-        mode: 'cors',
+        mode: 'same-origin',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         },
