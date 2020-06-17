@@ -22,11 +22,11 @@ export default function Login(): JSX.Element {
       <form action={`${Rest.API}${Rest.LOGIN_URL}`} method="POST" onSubmit={handleLoginSubmit}>
         <fieldset>
           <label htmlFor="email">Email:</label><br/>
-          <input id="email" type="email" name="email" value="xosaj13634@seberkd.com"/>
+          <input id="email" type="email" name="email" required/>
         </fieldset>
         <fieldset>
           <label htmlFor="password">Password:</label><br/>
-          <input id="password" type="password" name="password" value="Testest1"/>
+          <input id="password" type="password" name="password" required/>
         </fieldset>
         <br/>
         <button type="submit">Submit</button>
