@@ -15,7 +15,6 @@ export default function ErrorPopup(props: ErrorPopupProps): JSX.Element {
   const popupStyles = [styles.popup, visibleStyles].join(' ');
 
   function hidePopup(): void {
-    console.log('hhhhh');
     setVisible(false);
     onClose();
   }
