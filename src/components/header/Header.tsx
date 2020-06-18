@@ -21,7 +21,7 @@ export default function Header(): JSX.Element {
 
   return (
     <div className={styles.header}>
-      <button className={styles.menu}></button>
+      <button className={styles.menu} aria-label="Toggle Navigation"></button>
       <h2 className={styles.title}>{L('header.logo')}</h2>
       <Display if={!!user}>
         <div className={styles.profile}>

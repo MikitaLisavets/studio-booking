@@ -19,8 +19,8 @@ export default function Main(): JSX.Element {
   return (
     <div className="main-page">
       <Header/>
-      <div>Lang:</div>
-      <select onBlur={setLocale} onChange={setLocale}>
+      <label htmlFor="lang-selector">Lang:</label>
+      <select id="lang-selector" onBlur={setLocale} onChange={setLocale}>
         <option value="en" selected>En</option>
         <option value="ru">Ru</option>
       </select>
