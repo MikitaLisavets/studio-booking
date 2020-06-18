@@ -41,6 +41,7 @@ exports[`Header when user exists renders correctly 1`] = `
           className="header"
         >
           <button
+            aria-label="Toggle Navigation"
             className="menu"
           />
           <h2
@@ -118,6 +119,7 @@ exports[`Header when user is empty renders correctly 1`] = `
           className="header"
         >
           <button
+            aria-label="Toggle Navigation"
             className="menu"
           />
           <h2
