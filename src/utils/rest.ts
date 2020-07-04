@@ -31,7 +31,7 @@ export interface ConfirmSignUpResponse {
 }
 
 export function confirmSignUp(params: ConfirmSignUpRequest, errorHandler: ((error: ErrorRequest) => void) | null = null): Promise<ConfirmSignUpResponse | void> {
-  return rest.post<ConfirmSignUpResponse>(CONFIRM_SIGN_UP_URL, params, {}, {}, errorHandler);
+  return rest.post<ConfirmSignUpResponse>(CONFIRM_SIGN_UP_URL, params, {}, { credentials: 'include' }, errorHandler);
 }
 
 export const LOGIN_URL = '/login';
