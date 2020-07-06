@@ -1,5 +1,6 @@
 @import '~normalize.scss/normalize.scss';
 @import './variables.scss';
+@import './fonts.scss';
 
 html {
   font-size: 10px;
@@ -8,7 +9,7 @@ html {
 body {
   margin: 0;
   font-size: 1.4rem;
-  font-family: $font;
+  font-family: $font-main;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;

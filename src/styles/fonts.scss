@@ -1,0 +1,7 @@
+@import './mixins.scss';
+
+@include font-face('PlayfairDisplay', 'PlayfairDisplay-Regular', normal);
+@include font-face('PlayfairDisplay', 'PlayfairDisplay-Bold', bold);
+
+@include font-face('WorkSans', 'WorkSans-Regular', normal);
+@include font-face('WorkSans', 'WorkSans-Bold', bold);
