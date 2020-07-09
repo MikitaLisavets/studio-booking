@@ -5,9 +5,10 @@ import Display from '../../utils/Display';
 import L from '../../utils/locale';
 import { Link } from 'react-router-dom';
 import { getUser } from '../../selectors/selectors';
-import { SIGN_UP_ROUTE, LOGIN_ROUTE, LOGOUT_ROUTE } from '../../constants/navigation';
+import { LOGIN_ROUTE, LOGOUT_ROUTE } from '../../constants/navigation';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../actions/Actions';
+import { AccountIcon } from '../icons/Icons';
 
 
 export default function Header(): JSX.Element {
@@ -31,7 +32,9 @@ export default function Header(): JSX.Element {
       </Display>
       <Display if={!user}>
         <div className={styles.profile}>
-          <Link to={LOGIN_ROUTE}>{L('header.login')}</Link> / <Link to={SIGN_UP_ROUTE}>{L('header.signup')}</Link>
+          <Link to={LOGIN_ROUTE} className={styles.account}>
+            <AccountIcon/>
+          </Link>
         </div>
       </Display>
     </div>
