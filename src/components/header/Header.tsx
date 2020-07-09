@@ -8,7 +8,7 @@ import { getUser } from '../../selectors/selectors';
 import { LOGIN_ROUTE, LOGOUT_ROUTE } from '../../constants/navigation';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../actions/Actions';
-import { AccountIcon } from '../icons/Icons';
+import { AccountIcon, MenuIcon } from '../icons/Icons';
 
 
 export default function Header(): JSX.Element {
@@ -22,7 +22,9 @@ export default function Header(): JSX.Element {
 
   return (
     <div className={styles.header}>
-      <button className={styles.menu} aria-label="Toggle Navigation"></button>
+      <button className={styles.menu} aria-label="Toggle Navigation">
+        <MenuIcon/>
+      </button>
       <h2 className={styles.title}>{L('header.logo')}</h2>
       <Display if={!!user}>
         <div className={styles.profile}>

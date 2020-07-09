@@ -43,7 +43,19 @@ exports[`Header when user exists renders correctly 1`] = `
           <button
             aria-label="Toggle Navigation"
             className="menu"
-          />
+          >
+            <MenuIcon>
+              <ForwardRef(SvgMenu)
+                className="icon-menu"
+              >
+                <svg
+                  className="icon-menu"
+                >
+                  menu.svg
+                </svg>
+              </ForwardRef(SvgMenu)>
+            </MenuIcon>
+          </button>
           <h2
             className="title"
           >
@@ -121,7 +133,19 @@ exports[`Header when user is empty renders correctly 1`] = `
           <button
             aria-label="Toggle Navigation"
             className="menu"
-          />
+          >
+            <MenuIcon>
+              <ForwardRef(SvgMenu)
+                className="icon-menu"
+              >
+                <svg
+                  className="icon-menu"
+                >
+                  menu.svg
+                </svg>
+              </ForwardRef(SvgMenu)>
+            </MenuIcon>
+          </button>
           <h2
             className="title"
           >

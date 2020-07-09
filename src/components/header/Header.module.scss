@@ -1,6 +1,13 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.menu {
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .account {
