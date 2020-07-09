@@ -25,7 +25,6 @@ export default function Header(): JSX.Element {
       <button className={styles.menu} aria-label="Toggle Navigation">
         <MenuIcon/>
       </button>
-      <h2 className={styles.title}>{L('header.logo')}</h2>
       <Display if={!!user}>
         <div className={styles.profile}>
           <span>{user?.email}</span>

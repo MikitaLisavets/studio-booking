@@ -56,11 +56,6 @@ exports[`Header when user exists renders correctly 1`] = `
               </ForwardRef(SvgMenu)>
             </MenuIcon>
           </button>
-          <h2
-            className="title"
-          >
-            header.logo
-          </h2>
           <Display
             if={true}
           >
@@ -146,11 +141,6 @@ exports[`Header when user is empty renders correctly 1`] = `
               </ForwardRef(SvgMenu)>
             </MenuIcon>
           </button>
-          <h2
-            className="title"
-          >
-            header.logo
-          </h2>
           <Display
             if={false}
           />
