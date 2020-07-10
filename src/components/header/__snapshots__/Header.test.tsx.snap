@@ -43,12 +43,19 @@ exports[`Header when user exists renders correctly 1`] = `
           <button
             aria-label="Toggle Navigation"
             className="menu"
-          />
-          <h2
-            className="title"
           >
-            header.logo
-          </h2>
+            <MenuIcon>
+              <ForwardRef(SvgMenu)
+                className="icon-menu"
+              >
+                <svg
+                  className="icon-menu"
+                >
+                  menu.svg
+                </svg>
+              </ForwardRef(SvgMenu)>
+            </MenuIcon>
+          </button>
           <Display
             if={true}
           >
@@ -121,12 +128,19 @@ exports[`Header when user is empty renders correctly 1`] = `
           <button
             aria-label="Toggle Navigation"
             className="menu"
-          />
-          <h2
-            className="title"
           >
-            header.logo
-          </h2>
+            <MenuIcon>
+              <ForwardRef(SvgMenu)
+                className="icon-menu"
+              >
+                <svg
+                  className="icon-menu"
+                >
+                  menu.svg
+                </svg>
+              </ForwardRef(SvgMenu)>
+            </MenuIcon>
+          </button>
           <Display
             if={false}
           />
@@ -137,33 +151,30 @@ exports[`Header when user is empty renders correctly 1`] = `
               className="profile"
             >
               <Link
+                className="account"
                 to="/login"
               >
                 <LinkAnchor
+                  className="account"
                   href="/login"
                   navigate={[Function]}
                 >
                   <a
+                    className="account"
                     href="/login"
                     onClick={[Function]}
                   >
-                    header.login
-                  </a>
-                </LinkAnchor>
-              </Link>
-               / 
-              <Link
-                to="/signup"
-              >
-                <LinkAnchor
-                  href="/signup"
-                  navigate={[Function]}
-                >
-                  <a
-                    href="/signup"
-                    onClick={[Function]}
-                  >
-                    header.signup
+                    <AccountIcon>
+                      <ForwardRef(SvgAccount)
+                        className="icon-account"
+                      >
+                        <svg
+                          className="icon-account"
+                        >
+                          account.svg
+                        </svg>
+                      </ForwardRef(SvgAccount)>
+                    </AccountIcon>
                   </a>
                 </LinkAnchor>
               </Link>

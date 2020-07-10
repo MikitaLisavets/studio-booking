@@ -1,0 +1,9 @@
+@import 'src/styles/variables.scss';
+
+.hero {
+  margin: 0 (-$gap);
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
