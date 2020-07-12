@@ -1,7 +1,8 @@
 {
-  "header.logo": "Spot",
-  "header.login": "Log in",
-  "header.logout": "Log out",
-  "header.signup": "Create account",
-  "mainPage.title": "Book your time for as low as 5$ / hour"
+  "navigation.route.main": "Home Page",
+  "navigation.route.prices": "Prices",
+  "navigation.route.schedule": "Schedule",
+  "navigation.route.rooms": "Rooms",
+  "navigation.route.contacts": "Contacts Us",
+  "navigation.route.about": "About Us"
 }

@@ -1,7 +1,8 @@
 {
-  "header.logo": "Spot",
-  "header.login": "Логин",
-  "header.logout": "Выйти",
-  "header.signup": "Создать аккаунт",
-  "mainPage.title": "Забронируйте ваше время всего за 5$ / час"
+  "navigation.route.main": "",
+  "navigation.route.prices": "",
+  "navigation.route.schedule": "",
+  "navigation.route.rooms": "",
+  "navigation.route.contacts": "",
+  "navigation.route.about": ""
 }
