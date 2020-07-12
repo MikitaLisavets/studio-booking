@@ -4,7 +4,7 @@ import { AppState, ErrorRequest, User } from '../types/types';
 import * as Rest from '../utils/rest';
 import { ThunkAction } from 'redux-thunk';
 import { MAIN_ROUTE } from '../constants/navigation';
-import { history } from '../appRouter';
+import { history } from '../appRoutes';
 
 export const SET_LOCALE = 'SET_LOCALE';
 export function setLocale(locale: string): types.SetLocaleAction {

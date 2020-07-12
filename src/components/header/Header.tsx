@@ -10,7 +10,6 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../actions/Actions';
 import { AccountIcon, MenuIcon } from '../icons/Icons';
 
-
 export default function Header(): JSX.Element {
   const dispatch = useDispatch();
   const user = useShallowEqualSelector(getUser);
@@ -22,7 +21,9 @@ export default function Header(): JSX.Element {
 
   return (
     <div className={styles.header}>
-      <button className={styles.menu} aria-label="Toggle Navigation">
+      <button
+        className={styles.menu}
+        aria-label="Toggle Navigation">
         <MenuIcon/>
       </button>
       <Display if={!!user}>
